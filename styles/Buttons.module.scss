@@ -1,0 +1,17 @@
+@import './_variables';
+
+.customButton {
+    background-color: $dark-gray;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.375rem;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: darken($mid-gray, 10%);
+    }
+}
