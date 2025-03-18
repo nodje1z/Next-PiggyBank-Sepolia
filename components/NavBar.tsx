@@ -10,7 +10,7 @@ import {
   PopoverContent,
 } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
-import { Wallet, ChevronDown, LogOut, ExternalLink, AlertCircle } from "lucide-react";
+import { Coins, ArrowDown, ArrowUp, Info } from "lucide-react";
 
 export const ConnectWalletButton = () => {
   const { sdk, connected, connecting, account, error, chainId } = useSDK();
@@ -70,7 +70,7 @@ export const ConnectWalletButton = () => {
             >
               <div className="w-2 h-2 rounded-full bg-green-500"></div>
               {formatAddress(account)}
-              <ChevronDown size={16} />
+              <ArrowDown size={16} />
             </Button>
           </PopoverTrigger>
           <PopoverContent className="w-56 p-0 bg-white border-purple-100 shadow-lg rounded-lg overflow-hidden">
@@ -84,7 +84,7 @@ export const ConnectWalletButton = () => {
                   rel="noopener noreferrer"
                   className="text-purple-600 hover:text-purple-800"
                 >
-                  <ExternalLink size={12} />
+                  <ArrowUp size={12} />
                 </a>
               </div>
               {chainId && (
@@ -97,7 +97,7 @@ export const ConnectWalletButton = () => {
               onClick={disconnect}
               className="flex w-full items-center gap-2 p-2.5 text-sm text-red-600 hover:bg-red-50 transition-colors"
             >
-              <LogOut size={16} />
+              <ArrowUp size={16} />
               Disconnect
             </button>
           </PopoverContent>
@@ -109,13 +109,13 @@ export const ConnectWalletButton = () => {
             onClick={connect}
             className="bg-purple-600 hover:bg-purple-700 flex items-center gap-2"
           >
-            <Wallet className="h-4 w-4" /> 
+            <Coins className="h-4 w-4" /> 
             {connecting ? "Connecting..." : "Connect Wallet"}
           </Button>
           
           {errorMessage && (
             <div className="absolute top-full mt-2 bg-red-50 text-red-600 p-2 rounded text-xs flex items-center gap-1 shadow-md whitespace-nowrap">
-              <AlertCircle size={12} />
+              <Info size={12} />
               {errorMessage}
             </div>
           )}
