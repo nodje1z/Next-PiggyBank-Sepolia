@@ -1,8 +1,7 @@
 "use client";
 
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import WalletIcon from "../public/icons/WalletIcon";
-import { Button } from "./ui/button";
 import { useSDK, MetaMaskProvider } from "@metamask/sdk-react";
 import { formatAddress } from "../lib/utils";
 import {
@@ -10,21 +9,53 @@ import {
   PopoverTrigger,
   PopoverContent,
 } from "@/components/ui/popover";
+import { Button } from "@/components/ui/button";
+import { Wallet, ChevronDown, LogOut, ExternalLink, AlertCircle } from "lucide-react";
 
 export const ConnectWalletButton = () => {
-  const { sdk, connected, connecting, account } = useSDK();
+  const { sdk, connected, connecting, account, error, chainId } = useSDK();
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  // Clear error after 5 seconds
+  useEffect(() => {
+    if (errorMessage) {
+      const timer = setTimeout(() => {
+        setErrorMessage(null);
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [errorMessage]);
+
+  // Handle errors from SDK
+  useEffect(() => {
+    if (error) {
+      console.error("MetaMask error:", error);
+      setErrorMessage(error.message || "Error connecting to MetaMask");
+    }
+  }, [error]);
 
   const connect = async () => {
     try {
+      setErrorMessage(null);
+      if (!window.ethereum) {
+        setErrorMessage("MetaMask is not installed. Please install MetaMask first.");
+        return;
+      }
+      
       await sdk?.connect();
-    } catch (err) {
-      console.warn(`No accounts found`, err);
+    } catch (err: any) {
+      console.warn(`Connection failed:`, err);
+      setErrorMessage(err?.message || "Failed to connect to MetaMask");
     }
   };
 
   const disconnect = () => {
-    if (sdk) {
-      sdk.terminate();
+    try {
+      if (sdk) {
+        sdk.terminate();
+      }
+    } catch (err: any) {
+      console.error("Disconnect error:", err);
     }
   };
 
@@ -32,22 +63,63 @@ export const ConnectWalletButton = () => {
     <div className="relative">
       {connected ? (
         <Popover>
-          <PopoverTrigger>
-            <Button>{formatAddress(account)}</Button>
+          <PopoverTrigger asChild>
+            <Button 
+              variant="outline" 
+              className="flex items-center gap-2 border-purple-100 text-purple-800 hover:bg-purple-50"
+            >
+              <div className="w-2 h-2 rounded-full bg-green-500"></div>
+              {formatAddress(account)}
+              <ChevronDown size={16} />
+            </Button>
           </PopoverTrigger>
-          <PopoverContent className="mt-2 w-44 bg-gray-100 border rounded-md shadow-lg right-0 z-10 top-10">
+          <PopoverContent className="w-56 p-0 bg-white border-purple-100 shadow-lg rounded-lg overflow-hidden">
+            <div className="p-3 border-b border-slate-100">
+              <div className="text-sm font-medium text-slate-900">Connected Wallet</div>
+              <div className="text-xs text-slate-500 mt-1 flex items-center gap-1">
+                <div className="font-mono">{formatAddress(account)}</div>
+                <a 
+                  href={`https://sepolia.etherscan.io/address/${account}`} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-purple-600 hover:text-purple-800"
+                >
+                  <ExternalLink size={12} />
+                </a>
+              </div>
+              {chainId && (
+                <div className="text-xs text-slate-500 mt-1">
+                  Network ID: {parseInt(chainId, 16)}
+                </div>
+              )}
+            </div>
             <button
               onClick={disconnect}
-              className="block w-full pl-2 pr-4 py-2 text-left text-[#F05252] hover:bg-gray-200"
+              className="flex w-full items-center gap-2 p-2.5 text-sm text-red-600 hover:bg-red-50 transition-colors"
             >
+              <LogOut size={16} />
               Disconnect
             </button>
           </PopoverContent>
         </Popover>
       ) : (
-        <Button disabled={connecting} onClick={connect}>
-          <WalletIcon className="mr-2 h-4 w-4" /> Connect Wallet
-        </Button>
+        <div className="flex flex-col">
+          <Button 
+            disabled={connecting} 
+            onClick={connect}
+            className="bg-purple-600 hover:bg-purple-700 flex items-center gap-2"
+          >
+            <Wallet className="h-4 w-4" /> 
+            {connecting ? "Connecting..." : "Connect Wallet"}
+          </Button>
+          
+          {errorMessage && (
+            <div className="absolute top-full mt-2 bg-red-50 text-red-600 p-2 rounded text-xs flex items-center gap-1 shadow-md whitespace-nowrap">
+              <AlertCircle size={12} />
+              {errorMessage}
+            </div>
+          )}
+        </div>
       )}
     </div>
   );
@@ -58,25 +130,47 @@ export const NavBar = () => {
     typeof window !== "undefined" ? window.location.host : "defaultHost";
 
   const sdkOptions = {
-    logging: { developerMode: false },
-    checkInstallationImmediately: false,
+    logging: { developerMode: true },
+    checkInstallationImmediately: true,
     dappMetadata: {
-      name: "Next-Metamask-Boilerplate",
-      url: host, // using the host constant defined above
+      name: "ETH Piggy Bank",
+      url: host,
     },
+    // Add Sepolia chain Id explicitly
+    defaultNetworks: [11155111],
   };
 
   return (
-    <nav className="flex items-center justify-between max-w-screen-xl px-6 mx-auto py-7 rounded-xl">
-      <Link href="/" className="flex gap-1 px-6">
-        <span className="hidden text-2xl font-bold sm:block">
-          <span className="text-gray-900">Chicharron Banking</span>
-        </span>
-      </Link>
-      <div className="flex gap-4 px-6">
-        <MetaMaskProvider debug={false} sdkOptions={sdkOptions}>
-          <ConnectWalletButton />
-        </MetaMaskProvider>
+    <nav className="border-b border-slate-100 bg-white sticky top-0 z-10 backdrop-blur-lg bg-white/80">
+      <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+        <Link href="/" className="flex items-center gap-2">
+          <span className="font-bold text-xl bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent">
+            ETH Piggy Bank
+          </span>
+        </Link>
+
+        <div className="flex items-center gap-6">
+          <div className="hidden md:flex items-center gap-6">
+            <Link href="/" className="text-slate-600 hover:text-purple-700 text-sm font-medium">
+              Home
+            </Link>
+            <Link href="/contact" className="text-slate-600 hover:text-purple-700 text-sm font-medium">
+              Contact
+            </Link>
+            <a 
+              href="https://github.com/nodje1z/Next-PiggyBank-Sepolia" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-slate-600 hover:text-purple-700 text-sm font-medium"
+            >
+              GitHub
+            </a>
+          </div>
+          
+          <MetaMaskProvider debug={true} sdkOptions={sdkOptions}>
+            <ConnectWalletButton />
+          </MetaMaskProvider>
+        </div>
       </div>
     </nav>
   );

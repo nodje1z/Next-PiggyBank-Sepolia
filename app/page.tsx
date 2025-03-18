@@ -1,24 +1,73 @@
 import Footer from "@/components/footer";
 import Link from "next/link";
 import PiggyBank from "../components/PiggyBank";
-import buttonStyles from "../styles/Buttons.module.scss";
+import { Button } from "@/components/ui/button";
+import { PhoneCall, Github } from "lucide-react";
 
 export default function Home() {
   return (
-    <>
-      <main className="flex min-h-screen flex-col items-center justify-center p-24 bg-white">
-        <h2 className="text-2xl font-semibold mb-8">
-          {"ETH SEPOLIA PIGGY BANK"}
-        </h2>
-        <PiggyBank />
-        <div className="mt-16">
-          <Link href="/contact" passHref>
-            <button className={buttonStyles.customButton}>Contact us</button>
-          </Link>
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-white to-slate-50">
+      {/* Main content */}
+      <main className="flex-1 flex flex-col items-center justify-center p-6 md:p-10">
+        <div className="max-w-4xl w-full mx-auto grid gap-8 md:grid-cols-[1fr,1.2fr] items-center">
+          {/* Left side: Info */}
+          <div className="space-y-6 order-2 md:order-1">
+            <div className="space-y-2">
+              <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-700 to-pink-500 bg-clip-text text-transparent">
+                Save Your ETH<br />With Confidence
+              </h1>
+              <p className="text-slate-600 text-lg">
+                A secure and simple way to store your Sepolia testnet ETH in a decentralized smart contract.
+              </p>
+            </div>
+            
+            <div className="space-y-2 pt-2">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center">
+                  <span className="font-bold text-purple-700">1</span>
+                </div>
+                <p className="text-slate-700">Connect your wallet</p>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center">
+                  <span className="font-bold text-purple-700">2</span>
+                </div>
+                <p className="text-slate-700">Deposit your Sepolia ETH</p>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center">
+                  <span className="font-bold text-purple-700">3</span>
+                </div>
+                <p className="text-slate-700">Withdraw anytime</p>
+              </div>
+            </div>
+            
+            <div className="pt-4 flex flex-wrap gap-4">
+              <Link href="/contact" passHref>
+                <Button className="flex gap-2 bg-purple-600 hover:bg-purple-700">
+                  <PhoneCall size={18} />
+                  Contact Us
+                </Button>
+              </Link>
+              <Link href="https://github.com/nodje1z/Next-PiggyBank-Sepolia" target="_blank" passHref>
+                <Button variant="outline" className="flex gap-2 border-purple-200 text-purple-700 hover:bg-purple-50">
+                  <Github size={18} />
+                  View on GitHub
+                </Button>
+              </Link>
+            </div>
+          </div>
+          
+          {/* Right side: PiggyBank */}
+          <div className="order-1 md:order-2">
+            <PiggyBank />
+          </div>
         </div>
       </main>
+      
+      {/* Footer */}
       <Footer />
-    </>
+    </div>
   );
 }
 
