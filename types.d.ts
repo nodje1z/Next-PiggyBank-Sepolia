@@ -18,6 +18,8 @@ declare module 'lucide-react' {
   export const Clock: Icon;
   export const PhoneCall: Icon;
   export const Github: Icon;
+  export const LayoutGrid: Icon;
+  export const LineChart: Icon;
   
   // Add other icons as needed
 } 
