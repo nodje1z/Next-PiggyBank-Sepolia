@@ -2,9 +2,7 @@ import Footer from "@/components/footer";
 import Link from "next/link";
 import PiggyBank from "../components/PiggyBank";
 import { Button } from "@/components/ui/button";
-import { PhoneCall, Github } from "lucide-react";
-import DashboardMetrics from "@/components/DashboardMetrics";
-import TransactionHistory from "@/components/TransactionHistory";
+import { PhoneCall, Github, Coins } from "lucide-react";
 import { BackgroundBeams } from "@/components/ui/background-beams";
 
 export default function Home() {
@@ -50,8 +48,14 @@ export default function Home() {
               </div>
               
               <div className="pt-4 flex flex-wrap gap-4">
-                <Link href="/contact" passHref>
+                <Link href="/dashboard" passHref>
                   <Button className="flex gap-2 bg-purple-600 hover:bg-purple-700">
+                    <Coins size={18} />
+                    View Dashboard
+                  </Button>
+                </Link>
+                <Link href="/contact" passHref>
+                  <Button className="flex gap-2 border border-purple-200 bg-white text-purple-700 hover:bg-purple-50">
                     <PhoneCall size={18} />
                     Contact Us
                   </Button>
@@ -69,12 +73,6 @@ export default function Home() {
             <div className="order-1 md:order-2">
               <PiggyBank />
             </div>
-          </div>
-          
-          {/* Dashboard section below */}
-          <div className="max-w-6xl mx-auto grid gap-8 md:grid-cols-[1fr,2fr]">
-            <DashboardMetrics />
-            <TransactionHistory />
           </div>
         </div>
       </main>

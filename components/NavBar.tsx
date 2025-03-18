@@ -154,6 +154,9 @@ export const NavBar = () => {
             <Link href="/" className="text-slate-600 hover:text-purple-700 text-sm font-medium">
               Home
             </Link>
+            <Link href="/dashboard" className="text-slate-600 hover:text-purple-700 text-sm font-medium">
+              Dashboard
+            </Link>
             <Link href="/contact" className="text-slate-600 hover:text-purple-700 text-sm font-medium">
               Contact
             </Link>
