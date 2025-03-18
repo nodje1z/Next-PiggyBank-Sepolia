@@ -73,9 +73,9 @@ const TransactionHistory: React.FC = () => {
   }, [transactions]);
   
   return (
-    <div className="w-full rounded-xl bg-white/95 border border-white/10 p-6 mt-6">
+    <div className="w-full bg-white/95 border border-white/10 rounded-xl p-6">
       <h3 className="text-xl font-semibold mb-4">Transaction History</h3>
-      <div className="h-[300px]">
+      <div className="h-[350px]">
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart
             data={chartData}

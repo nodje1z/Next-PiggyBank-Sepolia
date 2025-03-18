@@ -46,10 +46,10 @@ const DashboardMetrics = () => {
   }, [transactions]);
   
   return (
-    <div className="w-full max-w-md bg-white/95 border border-white/10 rounded-xl p-6 mt-6">
+    <div className="w-full bg-white/95 border border-white/10 rounded-xl p-6">
       <h3 className="text-xl font-semibold mb-4">Account Summary</h3>
       
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="bg-slate-50 p-4 rounded-lg">
           <div className="flex items-center gap-2 mb-1">
             <Coins size={16} className="text-purple-500" />
