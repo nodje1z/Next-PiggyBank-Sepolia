@@ -4,10 +4,13 @@ A secure and user-friendly application for saving, storing, and managing Sepolia
 
 ![Screenshot](public/screenshot.png)
 
+## Smart Contract
+The smart contract is deployed on the Sepolia testnet at address: `0x3f24B31EA4DB84379711BCA058A119c023807977`
+
 ## Technologies
 
 - TypeScript
-- Next.js 13+
+- Next.js 14+
 - React
 - Ethers.js
 - TailwindCSS
@@ -26,10 +29,6 @@ A secure and user-friendly application for saving, storing, and managing Sepolia
 ## Project Status
 
 Technical Exploration - This project serves as a demonstration of Web3 wallet integration and Ethereum smart contract interaction using modern web technologies.
-
-## Smart Contract
-
-The smart contract is deployed on Sepolia Testnet. You can view it at the address specified in the application.
 
 ## Getting Started
 
