@@ -5,10 +5,13 @@ import { Button } from "@/components/ui/button";
 import { PhoneCall, Github } from "lucide-react";
 import DashboardMetrics from "@/components/DashboardMetrics";
 import TransactionHistory from "@/components/TransactionHistory";
+import { BackgroundBeams } from "@/components/ui/background-beams";
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-b from-white to-slate-50">
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-white to-slate-50 relative">
+      <BackgroundBeams />
+      
       {/* Hero section */}
       <main className="flex-1 flex flex-col">
         <div className="container mx-auto py-8 md:py-12">
