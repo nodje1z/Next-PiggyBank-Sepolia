@@ -50,7 +50,7 @@ export default function Home() {
                 </Button>
               </Link>
               <Link href="https://github.com/nodje1z/Next-PiggyBank-Sepolia" target="_blank" passHref>
-                <Button variant="outline" className="flex gap-2 border-purple-200 text-purple-700 hover:bg-purple-50">
+                <Button className="flex gap-2 border border-purple-200 bg-white text-purple-700 hover:bg-purple-50">
                   <Github size={18} />
                   View on GitHub
                 </Button>
