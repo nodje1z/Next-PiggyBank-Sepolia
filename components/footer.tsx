@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { Github, Twitter, Linkedin } from 'lucide-react';
+import { Github, ArrowUp, Info } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -28,14 +28,14 @@ export default function Footer() {
             target="_blank"
             className="w-9 h-9 flex items-center justify-center rounded-full bg-slate-100 text-slate-700 hover:bg-purple-100 hover:text-purple-700 transition-colors"
           >
-            <Twitter size={18} />
+            <ArrowUp size={18} />
           </Link>
           <Link 
             href="https://linkedin.com/in/yourprofile" 
             target="_blank"
             className="w-9 h-9 flex items-center justify-center rounded-full bg-slate-100 text-slate-700 hover:bg-purple-100 hover:text-purple-700 transition-colors"
           >
-            <Linkedin size={18} />
+            <Info size={18} />
           </Link>
         </div>
       </div>
