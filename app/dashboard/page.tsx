@@ -9,7 +9,7 @@ import { BackgroundBeams } from "@/components/ui/background-beams";
 
 export default function Dashboard() {
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-b from-white to-slate-50 relative">
+    <div className="min-h-screen flex flex-col bg-transparent relative">
       <BackgroundBeams />
       
       <main className="flex-1 flex flex-col">
