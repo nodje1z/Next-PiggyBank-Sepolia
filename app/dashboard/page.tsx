@@ -5,12 +5,10 @@ import DashboardMetrics from "@/components/DashboardMetrics";
 import TransactionHistory from "@/components/TransactionHistory";
 import DashboardPiggyBank from "@/components/DashboardPiggyBank";
 import Footer from "@/components/footer";
-import { BackgroundBeams } from "@/components/ui/background-beams";
 
 export default function Dashboard() {
   return (
-    <div className="min-h-screen flex flex-col bg-transparent relative">
-      <BackgroundBeams />
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-white to-slate-50 relative">
       
       <main className="flex-1 flex flex-col">
         <div className="container mx-auto py-8 md:py-12">

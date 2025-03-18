@@ -4,9 +4,6 @@ A secure and user-friendly application for saving, storing, and managing Sepolia
 
 ![Screenshot](public/screenshot.png)
 
-## Smart Contract
-The smart contract is deployed on the Sepolia testnet at address: `0x3f24B31EA4DB84379711BCA058A119c023807977`
-
 ## Technologies
 
 - TypeScript
@@ -30,13 +27,5 @@ The smart contract is deployed on the Sepolia testnet at address: `0x3f24B31EA4D
 
 Technical Exploration - This project serves as a demonstration of Web3 wallet integration and Ethereum smart contract interaction using modern web technologies.
 
-## Getting Started
-
-1. Clone the repository
-2. Install dependencies with `npm install`
-3. Create a `.env.local` file with your Sepolia contract address:
-   ```
-   NEXT_PUBLIC_CONTRACT_ADDRESS=your_contract_address_here
-   ```
-4. Run the development server with `npm run dev`
-5. Open [http://localhost:3000](http://localhost:3000) in your browser 
+## Smart Contract
+The smart contract is deployed on the Sepolia testnet at address: `0x3f24B31EA4DB84379711BCA058A119c023807977`
