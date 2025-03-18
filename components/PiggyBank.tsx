@@ -4,16 +4,16 @@ import React, { useState, useEffect } from "react";
 import { deposit, withdraw, getBalance } from "../lib/ethereum";
 import Image from "next/image";
 import { 
-  Card, 
   CardContent, 
   CardDescription, 
   CardFooter, 
   CardHeader, 
   CardTitle 
 } from "@/components/ui/card";
+import { CardSpotlight } from "@/components/ui/card-spotlight";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Coins, Upload, Download, Info } from "lucide-react";
+import { ArrowUp, ArrowDown, Coins, Info } from "lucide-react";
 
 const PiggyBank = () => {
   const [balance, setBalance] = useState("0");
@@ -110,7 +110,10 @@ const PiggyBank = () => {
   };
 
   return (
-    <Card className="w-full max-w-md bg-white shadow-xl border-0">
+    <CardSpotlight 
+      className="w-full max-w-md bg-white/95 border border-white/10"
+      spotlightColor="rgba(145, 71, 255, 0.15)"
+    >
       <CardHeader className="pb-4">
         <div className="flex justify-center mb-2">
           <div className="relative w-64 h-64">
@@ -174,20 +177,19 @@ const PiggyBank = () => {
           onClick={handleDeposit}
           disabled={loading}
         >
-          <Upload size={18} className="mr-2" />
+          <ArrowUp size={18} className="mr-2" />
           Deposit
         </Button>
         <Button 
-          variant="outline"
-          className="w-1/2 py-5 border-purple-200 text-purple-700 hover:bg-purple-50 transition-all"
+          className="w-1/2 py-5 border border-purple-200 bg-white text-purple-700 hover:bg-purple-50 transition-all"
           onClick={handleWithdraw}
           disabled={loading}
         >
-          <Download size={18} className="mr-2" />
+          <ArrowDown size={18} className="mr-2" />
           Withdraw
         </Button>
       </CardFooter>
-    </Card>
+    </CardSpotlight>
   );
 };
 
