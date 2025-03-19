@@ -60,7 +60,7 @@ export const ConnectWalletButton = () => {
   };
 
   return (
-    <div className="relative">
+    <div className="relative z-nav">
       {connected ? (
         <Popover>
           <PopoverTrigger asChild>
@@ -73,7 +73,7 @@ export const ConnectWalletButton = () => {
               <ArrowDown size={16} />
             </Button>
           </PopoverTrigger>
-          <PopoverContent className="w-56 p-0 bg-white border-purple-100 shadow-lg rounded-lg overflow-hidden">
+          <PopoverContent className="w-56 p-0 bg-white border-purple-100 shadow-lg rounded-lg overflow-hidden z-nav-dropdown">
             <div className="p-3 border-b border-slate-100">
               <div className="text-sm font-medium text-slate-900">Connected Wallet</div>
               <div className="text-xs text-slate-500 mt-1 flex items-center gap-1">
@@ -114,7 +114,7 @@ export const ConnectWalletButton = () => {
           </Button>
           
           {errorMessage && (
-            <div className="absolute top-full mt-2 bg-red-50 text-red-600 p-2 rounded text-xs flex items-center gap-1 shadow-md whitespace-nowrap">
+            <div className="absolute top-full mt-2 bg-red-50 text-red-600 p-2 rounded text-xs flex items-center gap-1 shadow-md whitespace-nowrap z-nav-dropdown">
               <Info size={12} />
               {errorMessage}
             </div>
@@ -141,8 +141,8 @@ export const NavBar = () => {
   };
 
   return (
-    <nav className="border-b border-slate-100 bg-white sticky top-0 z-10 backdrop-blur-lg bg-white/80">
-      <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+    <nav className="sticky top-0 z-nav shadow-sm will-change-transform">
+      <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between border-b border-slate-100 backdrop-blur-lg bg-white/95">
         <Link href="/" className="flex items-center gap-2">
           <span className="font-bold text-xl bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent">
             ETH Piggy Bank

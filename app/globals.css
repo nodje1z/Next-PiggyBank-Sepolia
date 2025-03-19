@@ -106,6 +106,17 @@
   overflow: hidden;
 }
 
+/* Navbar styling */
+nav.sticky {
+  position: sticky;
+  top: 0;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  background-color: rgba(255, 255, 255, 0.8);
+  z-index: 50;
+  border-bottom: 1px solid rgba(240, 240, 240, 0.8);
+}
+
 /* Custom utilities */
 @layer utilities {
   .text-balance {
@@ -127,4 +138,20 @@
   background-color: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
+}
+
+/* Z-index utilities */
+.z-nav {
+  z-index: 100;
+}
+.z-nav-dropdown {
+  z-index: 110;
+}
+
+/* Increase backdrop opacity for navbar */
+nav.sticky,
+nav > div {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
 }
